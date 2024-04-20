@@ -58,5 +58,36 @@ module.exports = {
         }
     },
     //POST Friend
+    async addFriend(req, res){
+        try {
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.username },
+                { $addToSet: { friends: req.body } }, 
+                { runValidators: true, new: true}
+            );
+            if (!user) {
+                return res.status(404).json({ message: 'User not found '});
+            }
+            res.json(user);
+        } catch (err){
+            return res.status(500).json(err)
+        }
+    },
     // DELETE Friend
+    async removeFriend(req, res){
+        try{
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.username },
+                { $pull: { friend: { username: req.params.username}}}, 
+                { runValidators: true, new: true}
+            );
+            if (!user){
+                return res.status(404).json({ message: 'User not found'});
+            }
+            res.json(user);
+        } catch (err){
+            return res.status(500).json(err)
+        }
+    }
+
 }
