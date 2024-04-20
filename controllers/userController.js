@@ -44,6 +44,21 @@ module.exports = {
         }
     },
     //PUT User
+    async updateUser(req, res){
+        try{
+           const user = await User.findOneAndUpdate({ _id: req.params.username}).select('-__v');
+           if (!user){
+                return res.status(404).json({ message: 'User not found'})
+            }
+            res.json({
+                user, 
+                thoughts: await thoughts(req.params.username)
+            })
+        }  
+        catch (err){
+            return res.status(500).json(err)
+        }
+    },
     //DELETE User
     async deleteUser(req, res){
         try{
