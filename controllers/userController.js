@@ -32,5 +32,31 @@ module.exports = {
         catch (err){
             return res.status(500).json(err);
         }
-    }
+    },
+    //POST User
+    async addUser(req, res){
+        try{
+           const user = await User.create(req.body);
+           res.json(user);
+        }  
+        catch (err){
+            return res.status(500).json(err)
+        }
+    },
+    //PUT User
+    //DELETE User
+    async deleteUser(req, res){
+        try{
+            const user = await User.findOneAndDelete({ _id: req.params.username})
+
+            if (!user){
+                return res.status(404).json({message: 'User not found'})
+            }
+        }
+        catch(err) {
+            return res.status(500).json(err)
+        }
+    },
+    //POST Friend
+    // DELETE Friend
 }
