@@ -12,3 +12,5 @@ router.route('/:username/friends').report(addFriend);
 router.route('/:username/friends/:username').delete(removeFriend);
 
 //Extra Credit: DELETE user and all their thoughts
+
+module.exports = router;
