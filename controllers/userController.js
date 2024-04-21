@@ -109,13 +109,16 @@ module.exports = {
     async addThought(req, res){
         try{
             const user = await User.findOneAndUpdate(
-                { _id: req.params.username},
+                { _id: req.params.userId},
                 { $addToSet: { thought: req.body }},
                 {runValidators: true, new: true}
             )
-
+            if (!user){
+                return res.status(404).json({ message: 'Unable to add thought'})
+            }
+            res.json(user)
         } catch (err){
-            return res.status(404).json({ message: 'Unable to add thought'})
+            return res.status(500).json({ message: 'Unable to add thought'})
         }
     }
 

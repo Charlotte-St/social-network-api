@@ -1,12 +1,12 @@
 const { ObjectId } = require('mongoose').Types;
-const {User, Thought, Reaction} = require('../models');
+const {User, Thought} = require('../models');
 
 module.exports = {
     //GET all thoughts
     async getThoughts(req, res){
         try {
-            const thoughts = await Thought.find();
-            res.json(thoughtObj)
+            const thought = await Thought.find();
+            res.json(thought)
         }
         catch (err){
             return res.status(500).json(err);

@@ -16,19 +16,15 @@ const userSchema = new Schema(
             unique: true,
             match: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         }, 
-        thoughts: [thoughtSchema],
-        friends: [
-            {
-            type: Schema.Types.ObjectID,
-            ref: 'user'
-            }
-        ]
+        thoughts: [{type: Schema.Types.ObjectId, ref: 'thought'}],
+        friends: [{type: Schema.Types.ObjectID,ref: 'user'}]
     },
     {
         toJSON: {
             getters: true,
             virtuals: true
-        }
+        }, 
+        id: false
     }
 );
 
