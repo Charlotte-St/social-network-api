@@ -12,8 +12,3 @@ router.route('/:thoughtId/reactions').post(addReaction);
 router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
 
 module.exports = router;
-
-// GET all thoughts
-//GET single throught
-// POST thought
-//DELETE thouhgt

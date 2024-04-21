@@ -17,7 +17,7 @@ const userSchema = new Schema(
             match: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         }, 
         thoughts: [{type: Schema.Types.ObjectId, ref: 'thought'}],
-        friends: [{type: Schema.Types.ObjectID,ref: 'user'}]
+        friends: [{type: Schema.Types.ObjectId, ref: 'user'}]
     },
     {
         toJSON: {

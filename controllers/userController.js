@@ -103,11 +103,11 @@ module.exports = {
         }
     },
     //POST Thought
-    async addThought(req, res){
+     async addThought(req, res){
         try{
             const user = await User.findOneAndUpdate(
                 { _id: req.params.userId},
-                { $addToSet: { thought: req.body }},
+                { $addToSet: { thoughts: req.body }},
                 {runValidators: true, new: true}
             )
             if (!user){
