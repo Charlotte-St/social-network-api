@@ -1,17 +1,6 @@
 /*
 
-* `reactionId`
-  * Use Mongoose's ObjectId data type
-  * Default value is set to a new ObjectId
 
-* `reactionBody`
-  * String
-  * Required
-  * 280 character maximum
-
-* `username`
-  * String
-  * Required
 
 * `createdAt`
   * Date
@@ -47,5 +36,10 @@ const reactionSchema = new Schema(
         },
     }
 );
+
+reactionSchema.virtual('formatDate').get(function (){
+  const time = new Date(Date.UTC(this.createdAt));
+  return time.toLocaleString('en-US', {timeZone: 'EST'})
+})
 
 module.exports = reactionSchema;
