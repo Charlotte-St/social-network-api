@@ -5,13 +5,13 @@ const {
 
 router.route('/').get(getUsers).post(addUser);
 
-router.route('/:username').get(getSingleUser).put(updateUser).delete(deleteUser);
+router.route('/:userId').get(getSingleUser).put(updateUser).delete(deleteUser);
 
-router.route('/:username/thoughts').post(addThought);
+router.route('/:userId/thoughts').post(addThought);
 
-router.route('/:username/friends').report(addFriend);
+router.route('/:userId/friends').report(addFriend);
 
-router.route('/:username/friends/:username').delete(removeFriend);
+router.route('/:userId/friends/:username').delete(removeFriend);
 
 //Extra Credit: DELETE user and all their thoughts
 
