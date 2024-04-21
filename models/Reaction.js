@@ -1,17 +1,3 @@
-/*
-
-
-
-* `createdAt`
-  * Date
-  * Set default value to the current timestamp
-  * Use a getter method to format the timestamp on query
-
-*/
-
-
-
-
 const { Schema, Types } = require('mongoose');
 
 const reactionSchema = new Schema(
@@ -34,6 +20,12 @@ const reactionSchema = new Schema(
             type: Date,
             default: Date.now
         },
+    },
+    {
+      toJSON: {
+        virtuals: true
+      },
+      id: false
     }
 );
 
