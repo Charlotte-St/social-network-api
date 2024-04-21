@@ -30,8 +30,8 @@ const reactionSchema = new Schema(
 );
 
 reactionSchema.virtual('formatDate').get(function (){
-  const time = new Date(Date.UTC(this.createdAt));
-  return time.toLocaleString('en-US', {timeZone: 'EST'})
+  const time = new Date(this.createdAt);
+  return time.toLocaleString('en-US')
 })
 
 module.exports = reactionSchema;
