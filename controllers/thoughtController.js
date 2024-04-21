@@ -51,19 +51,37 @@ module.exports = {
         }
     },
     //DELETE thought
-    async deleteThought(req, res){
+    /*async deleteThought(req, res){
         try {
             const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId});
             if (!thought){
                 res.status(404).json({ message: 'Thought not found'})
             }
             //Double check this! It may be an issue
-            await Reaction.deleteMany({ _id: { $in: thought.reactions}});
+            //await Reaction.deleteMany({ _id: { $in: thought.reactions}});
             res.json({ message: 'Thought deleted' })
         } catch (err){
             res.status(500).json(err);
         }
-    },
+    },*/
+
+
+    async deleteThought(req, res) {
+        try {
+          const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
+    
+          if (!thought) {
+            return res.status(404).json({ message: 'Thought not found' });
+          }
+    
+          res.json({ message: 'Thought deleted' });
+        } catch (err) {
+          console.log(err);
+          res.status(500).json(err);
+        }
+      },
+
+    
     //POST reaction
     async addReaction(req, res){
         try {
