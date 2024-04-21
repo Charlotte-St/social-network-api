@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-const userSchema = require('./User');
+const { Schema, Types } = require('mongoose');
+//const userSchema = require('./User');
 const reactionSchema = require('./Reaction');
 
 const thoughtSchema = new Schema(
@@ -16,7 +16,7 @@ const thoughtSchema = new Schema(
         },
         username: {
             type: String,
-            value: this.username, 
+            //value: this.username, 
             require: true
         },
         reactions: [reactionSchema]
@@ -37,4 +37,6 @@ thoughtSchema.virtual('formatDate').get(function (){
     return time.toLocaleString('en-US', {timeZone: 'EST'})
   });
 
+
+//const Thought = model('thought', thoughtSchema);
 module.exports = thoughtSchema;

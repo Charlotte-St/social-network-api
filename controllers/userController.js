@@ -103,6 +103,19 @@ module.exports = {
         } catch (err){
             return res.status(500).json(err)
         }
+    },
+    //POST Thought
+    async addThought(req, res){
+        try{
+            const user = await User.findOneAndUpdate(
+                {_id: req.params.username},
+                { $addToSet: { thought: req.body }},
+                {runValidators: true, new: true}
+            )
+
+        } catch (err){
+            return res.status(404).json({ message: 'Unable to add thought'})
+        }
     }
 
 }
