@@ -21,14 +21,11 @@ module.exports = {
     //GET a single user
     async getSingleUser(req, res){
         try {
-            const user = await User.findOne({ _id: req.params.userId}).select('-__v');
+            const user = await User.findOne({ _id: req.params.userId}).populate({ path: 'thoughts', select: '-__v'}).select('-__v');
             if (!user){
                 return res.status(404).json({ message: 'User not found'})
             }
-            res.json({
-                user, 
-                //thoughts: await thoughts(req.params.userId)
-            })
+            res.json(user)
         }
         catch (err){
             return res.status(500).json(err);
@@ -47,13 +44,12 @@ module.exports = {
     //PUT User
     async updateUser(req, res){
         try{
-           const user = await User.findOneAndUpdate({ _id: req.params.username}).select('-__v');
+           const user = await User.findOneAndUpdate({ _id: req.params.userId}, {$set: req.body}, {runValidators: true, new: true}).select('-__v');
            if (!user){
                 return res.status(404).json({ message: 'User not found'})
             }
             res.json({
-                user, 
-                thoughts: await thoughts(req.params.username)
+                user
             })
         }  
         catch (err){
