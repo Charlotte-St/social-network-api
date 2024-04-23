@@ -6,7 +6,7 @@
 
 This app provides the back end for a social media app. The app has API routes for functions including adding, updating, and deleting users, thoughts posted by users, and reactions to those thoughts. A MongoDB database is used to store the data from the app. 
 
-[Video Walkthrough]()
+[Video Walkthrough](https://drive.google.com/file/d/1YiYkhgTlT7d8v4oU05RmK35KvVSGKkX5/view?usp=share_link)
 
 ## Installation
 
